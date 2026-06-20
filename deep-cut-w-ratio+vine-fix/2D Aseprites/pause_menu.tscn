@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://cbbw1eaplorpl"]
+
+[ext_resource type="Script" uid="uid://dvoq7stmn8unk" path="res://2D Aseprites/pause_menu.gd" id="1_dygvg"]
+[ext_resource type="Texture2D" uid="uid://b2ewwbkrbvt28" path="res://2D Aseprites/tree2.png" id="2_hgmme"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bpi0q"]
+
+[sub_resource type="Animation" id="Animation_vmyb1"]
+resource_name = "blur"
+length = 0.3
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_myy0f"]
+_data = {
+&"blur": SubResource("Animation_vmyb1")
+}
+
+[node name="PauseMenu" type="Control" unique_id=512328838]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dygvg")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1413643677]
+material = SubResource("ShaderMaterial_bpi0q")
+layout_mode = 0
+offset_right = 1148.0
+offset_bottom = 646.0
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1696870728]
+layout_mode = 0
+offset_left = 324.0
+offset_top = 114.0
+offset_right = 824.0
+offset_bottom = 571.0
+scale = Vector2(0.92, 0.92)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1139761722]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Resume" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1389047853]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Resume"
+
+[node name="Restart" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1072647932]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Restart"
+
+[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer" unique_id=517803248]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Quit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=94770038]
+libraries/ = SubResource("AnimationLibrary_myy0f")
+
+[node name="Windy Tree6" type="Sprite3D" parent="." unique_id=1596312271]
+transform = Transform3D(0.09896556, 0, 0.49010795, 0, 0.5, 0, -0.49010795, 0, 0.09896556, 1.4763975, 0.9508709, -9.469405)
+modulate = Color(0.38170293, 0.3817033, 0.38170317, 1)
+texture = ExtResource("2_hgmme")
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

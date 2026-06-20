@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://8kt624o614a2"]
+
+[ext_resource type="Texture2D" uid="uid://d3gl0p1ur7dhm" path="res://HoldingMachete(Animation)-Sheet.png" id="1_a202f"]
+[ext_resource type="Script" uid="uid://chh7eepqqyl8q" path="res://character_body_3d.gd" id="1_noarx"]
+[ext_resource type="Script" uid="uid://dqe28iymynhdk" path="res://vine.gd" id="3_r3fl7"]
+[ext_resource type="Texture2D" uid="uid://b21fhm6yr8jtu" path="res://2D Aseprites/Animation Sprites/vine1-Sheet.png" id="4_jka67"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_noarx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i5arm"]
+height = 1.3227539
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0tk4"]
+atlas = ExtResource("1_a202f")
+region = Rect2(0, 0, 297, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3fl7"]
+atlas = ExtResource("1_a202f")
+region = Rect2(301, 0, 297, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jka67"]
+atlas = ExtResource("1_a202f")
+region = Rect2(602, 0, 297, 250)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i5arm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0tk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3fl7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jka67")
+}],
+"loop": false,
+"name": &"swing",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wc5p8"]
+size = Vector3(0.04917431, 0.17633057, 0.12067413)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jsk3o"]
+size = Vector3(1.2504272, 1.2244873, 0.84198)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4arys"]
+atlas = ExtResource("4_jka67")
+region = Rect2(0, 0, 297, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6iypd"]
+atlas = ExtResource("4_jka67")
+region = Rect2(302, 0, 297, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tereu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4arys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6iypd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node3D" type="Node3D" unique_id=1454282878]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=795885866]
+mesh = SubResource("PlaneMesh_noarx")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=208983610]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.061921537, 0)
+script = ExtResource("1_noarx")
+speed = 0.3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1187183296]
+transform = Transform3D(0.035031926, 0, 0, 0, 0.06786454, 0, 0, 0, 0.030051792, 0, -0.017220944, 0)
+shape = SubResource("CapsuleShape3D_i5arm")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=827707146]
+
+[node name="HandSprite" type="AnimatedSprite2D" parent="CharacterBody3D/Camera3D" unique_id=1087016345]
+position = Vector2(666.875, 347.74997)
+scale = Vector2(3.0446126, 2.8579998)
+sprite_frames = SubResource("SpriteFrames_i5arm")
+animation = &"swing"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody3D/Camera3D/HandSprite" unique_id=224764992]
+
+[node name="InteractArea" type="Area3D" parent="CharacterBody3D" unique_id=2145402103]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/InteractArea" unique_id=301793693]
+transform = Transform3D(1.1003062, 0, 0, 0, 0.46126717, 0, 0, 0, 0.37641284, 1.41114e-05, -0.015385896, 0.00021608174)
+shape = SubResource("BoxShape3D_wc5p8")
+
+[node name="Vine" type="StaticBody3D" parent="." unique_id=84893106]
+transform = Transform3D(0.036723442, 0, 0, 0, -0.1756663, -0.18090254, 0, 0.26113355, -0.12169439, -0.28644413, 0.16520119, -0.09475015)
+script = ExtResource("3_r3fl7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Vine" unique_id=630232558]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.9999796, 0, 0, 0, 0.99998313, 0.3043518, 0.11224348, 0.15847701)
+shape = SubResource("BoxShape3D_jsk3o")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Vine" unique_id=1687482646]
+transform = Transform3D(-0.1261855, 0, -0.96628094, 0, 0.20111552, 0, 0.38228807, 0, -0.31894958, 0, 0.4125853, 0)
+sprite_frames = SubResource("SpriteFrames_tereu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Vine/AnimatedSprite3D" unique_id=486179028]

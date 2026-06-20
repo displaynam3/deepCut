@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://7pw48t0tkdar"
+path="res://.godot/imported/river.aseprite-81263afe424db1f37fd5a0c9dce1b533.res"
+
+[deps]
+
+source_file="res://2D Aseprites/Animation Sprites/river.aseprite"
+dest_files=["res://.godot/imported/river.aseprite-81263afe424db1f37fd5a0c9dce1b533.res"]
+
+[params]
+
